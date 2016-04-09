@@ -1,0 +1,29 @@
+CREATE TABLE fg_security.role_value (
+    ROLE_NAME      VARCHAR(128)   NOT NULL ENABLE,
+    TABLE_NAME      VARCHAR(128)  NOT NULL ENABLE,
+    PREDICATE      VARCHAR(4000)  NOT NULL ENABLE,
+    PREDICATE_VALUE VARCHAR(200)  NOT NULL ENABLE,
+    CREATE_DATE    TIMESTAMP DEFAULT SYSTIMESTAMP NOT NULL ENABLE,
+    CREATED_BY     VARCHAR(40) DEFAULT CURRENT_USER NOT NULL ENABLE
+);
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('BOVADA', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'BOVADA');
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('BODOG_ASIA', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'BODOG_ASIA');
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('BODOG_CANADA', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'BODOG_CANADA');
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('SLOTS', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'SLOTS');
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('SLOTS_CANADA', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'SLOTS_CANADA');
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('IGNITION', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'IGNITION');
+
+insert into FG_SECURITY.ROLE_VALUE (ROLE_NAME, TABLE_NAME, PREDICATE, PREDICATE_VALUE)
+values ('CONCORD', 'CASINO_GAME_PLAY_FACT', 'casino_site_key = (SELECT sd.site_key FROM olap.site_dim sd WHERE sd.site_name IN (<VALUES>))', 'CONCORD');
