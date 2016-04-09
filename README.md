@@ -1,8 +1,8 @@
 # Fine-Grained-Auditing
---
--- Current version 2016/04/26
--- Graham Mossman, EXASOL
---
+##
+## Current version 2016/04/26
+## Graham Mossman, EXASOL
+##
 
 The following objects implement a kind of fine-grained auditing (similar to Oracle's) in EXASOL.
 
