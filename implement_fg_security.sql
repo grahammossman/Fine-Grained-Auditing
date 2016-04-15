@@ -1,6 +1,7 @@
-OPEN SCHEMA FG_SECURITY;
-CREATE OR REPLACE LUA SCRIPT "GMPREPROCESSORSCRIPT_FG" () RETURNS ROWCOUNT AS
-function gm_preprocessor_function_fg(sqltext)
+CREATE OR REPLACE LUA SCRIPT fg_security.implement_fg_security () 
+RETURNS ROWCOUNT 
+AS
+function rewrite_sql(sqltext)
 --
 -- SQL must start with SELECT or CREATE ...VIEW to be eligible (optionally with leading spaces)
 -- otherwise return the original SQL
@@ -34,15 +35,15 @@ this_replacement=conversions[i][2]
 
       local tokens = sqlparsing.tokenize(returntext)
       for i=1,#tokens do
-			if string.upper(tokens[i]) == 'FROM' then
-				tokens[i]='FROM'
-			end 
+                                                if string.upper(tokens[i]) == 'FROM' then
+                                                                tokens[i]='FROM'
+                                                end 
             if string.upper(tokens[i]) == 'OLAP.'..this_table_name then
                         tokens[i] = string.upper(tokens[i])
             end
         end
 
-	returntext=table.concat(tokens)
+                returntext=table.concat(tokens)
 
 
 -- replacements are only relevant in a JOIN (INNER JOIN, OUTER JOIN ... etc.) 
@@ -63,3 +64,5 @@ end
 return returntext
 end
 /
+
+GRANT EXECUTE ON fg_security.implement_fg_security TO public;
